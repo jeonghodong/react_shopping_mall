@@ -56,6 +56,7 @@ const Wrap = styled.div`
   top: 0;
   background-color: white;
   margin-bottom: 3rem;
+  z-index: 9999;
 `;
 function Header() {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ function Header() {
       <TopWrap>
         <Left>
           <Logo src={CatLogo} alt="logo" onClick={() => navigate("/Cats")} />
-          <Input type="text" placeholder="어떤 상품을 찾으세요?" />
+          <Input type="text" placeholder="어떤 상품을 찾냐옹?" />
         </Left>
         <Right>
           <RightBar>

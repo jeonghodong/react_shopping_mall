@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
@@ -13,6 +13,7 @@ import ShoppingBasket from "./Pages/ShoppingBasket";
 import Cats from "./Pages/Cats";
 
 function App() {
+  const [products, setProducts] = useState([]);
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -23,7 +24,7 @@ function App() {
               <Route path="/Login" element={<Login />} />
               <Route path="/SignUp" element={<SignUp />} />
               <Route path="/Profile" element={<Profile />} />
-              <Route path="/Cats" element={<Cats />} />
+              <Route path="/Cats" element={<Cats setProducts={setProducts} products={products} />} />
               <Route path="/ShoppingBasket" element={<ShoppingBasket />} />
             </Route>
           </Routes>

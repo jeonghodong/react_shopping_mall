@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import B1 from "../../assets/B1.png";
+import B2 from "../../assets/B2.png";
+import B3 from "../../assets/B3.png";
+import B4 from "../../assets/B4.png";
+import B5 from "../../assets/B5.png";
+import B6 from "../../assets/B6.png";
+import B7 from "../../assets/B7.png";
+
+const Img = styled.img`
+  width: 100vw;
+  height: 500px;
+`;
 
 const SlideWrapper = styled.div`
   overflow: hidden;
   position: relative;
+  margin-bottom: 5rem;
 `;
 
 const SlideContent = styled.div`
@@ -46,7 +59,16 @@ const IndicatorItem = styled.li`
   color: ${(props) => (props.active ? "white" : "gray")};
 `;
 
-const Slide = ({ slides }) => {
+const Slide = () => {
+  const slides = [
+    <Img src={B1} alt="Slide 1" />,
+    <Img src={B2} alt="Slide 2" />,
+    <Img src={B3} alt="Slide 3" />,
+    <Img src={B4} alt="Slide 4" />,
+    <Img src={B5} alt="Slide 5" />,
+    <Img src={B6} alt="Slide 6" />,
+    <Img src={B7} alt="Slide 7" />,
+  ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const length = slides.length;
 
@@ -68,12 +90,11 @@ const Slide = ({ slides }) => {
     }, 4000);
     return () => clearInterval(interval);
   }, [currentIndex, length]);
-
   return (
     <SlideWrapper>
       <SlideContent style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {slides.map((slide, index) => (
-          <SlideItem key={slide} index={index}>
+          <SlideItem key={index} index={index}>
             {slide}
           </SlideItem>
         ))}
@@ -86,7 +107,7 @@ const Slide = ({ slides }) => {
       </SlideButton>
       <Indicator>
         {slides.map((slide, index) => (
-          <IndicatorItem key={slide} active={currentIndex === index} onClick={() => onIndicatorClick(index)}>
+          <IndicatorItem key={index} active={currentIndex === index} onClick={() => onIndicatorClick(index)}>
             &bull;
           </IndicatorItem>
         ))}
