@@ -86,7 +86,7 @@ function LoginHeader() {
           </LogoutBtn>
         </Left>
         <Right>
-          <span>{`${name}님 환영합니다.`}</span>
+          <span>{`${name} 집사 환영한다냥.`}</span>
         </Right>
       </TopWrap>
       <TopWrap>

@@ -27,6 +27,7 @@ const SlideContent = styled.div`
 const SlideItem = styled.div`
   flex: 0 0 100%;
   transition-delay: ${(props) => props.index * 0.1}s;
+  overflow: hidden;
 `;
 
 const SlideButton = styled.button`
