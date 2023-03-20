@@ -37,7 +37,7 @@ const InputBox = styled.form`
 `;
 const Btn = styled.button`
   margin-top: 1.5rem;
-  border: 1px solid black;
+  border: none;
   background-color: #7779ff;
   padding: 2rem 5rem 2rem 5rem;
   border-radius: 20px;
@@ -140,6 +140,9 @@ function Login() {
           />
           <Input type="password" placeholder="비밀번호" value={password} onChange={handlePassword} />
           <Btn>로그인</Btn>
+          <Btn style={{ backgroundColor: "red" }} onClick={() => navigate("/SignUp")}>
+            회원가입
+          </Btn>
         </InputBox>
       </InBox>
     </Wrap>
