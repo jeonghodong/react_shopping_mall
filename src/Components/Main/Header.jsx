@@ -39,7 +39,7 @@ const RightBar = styled.div`
   }
 `;
 const Input = styled.input`
-  width: 700px;
+  width: 45vw;
   height: 60px;
   background-color: #eeeeee;
   outline: none;
@@ -60,6 +60,7 @@ const Wrap = styled.div`
 `;
 function Header() {
   const navigate = useNavigate();
+  console.log("로그인 전 헤더 렌더링");
   return (
     <Wrap>
       <TopWrap>

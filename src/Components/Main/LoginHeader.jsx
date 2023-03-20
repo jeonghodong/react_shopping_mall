@@ -42,7 +42,7 @@ const UserImg = styled.img`
 `;
 
 const Input = styled.input`
-  width: 700px;
+  width: 45vw;
   height: 60px;
   background-color: #eeeeee;
   outline: none;
@@ -67,6 +67,7 @@ const LogoutBtn = styled.span`
   cursor: pointer;
 `;
 function LoginHeader() {
+  console.log("로그인 후 헤더 렌더링");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const name = useSelector((store) => store.loginState.name);

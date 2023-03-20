@@ -11,7 +11,7 @@ const Wrap = styled.div`
 `;
 
 function Cats({ products, setProducts }) {
-  // 상품정보 get
+  // 상품정보 axios get
   useEffect(() => {
     axios
       .get("/data/products.json")
@@ -22,7 +22,6 @@ function Cats({ products, setProducts }) {
         console.log(err);
       });
   }, []);
-
   return (
     <div>
       <Slide />
