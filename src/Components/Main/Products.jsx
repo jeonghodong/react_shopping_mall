@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrap = styled.div`
@@ -32,11 +33,12 @@ const Delivery = styled.span`
   text-align: center;
 `;
 function Products({ v }) {
+  const navigate = useNavigate();
   return (
-    <Wrap>
+    <Wrap onClick={() => navigate(`/product/${v.id}`)}>
       <img src={v.image} alt="img" />
       <Name>{v.name}</Name>
-      <Price>{v.price}원</Price>
+      <Price>{v.price.toLocaleString()}원</Price>
       <Delivery>{v.delivery}</Delivery>
     </Wrap>
   );

@@ -11,6 +11,7 @@ import store, { persistor } from "./Redux/store/store";
 import { PersistGate } from "redux-persist/integration/react";
 import ShoppingBasket from "./Pages/ShoppingBasket";
 import Cats from "./Pages/Cats";
+import ProductDetail from "./Pages/ProductDetail";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -25,6 +26,7 @@ function App() {
               <Route path="/SignUp" element={<SignUp />} />
               <Route path="/Profile" element={<Profile />} />
               <Route path="/Cats" element={<Cats setProducts={setProducts} products={products} />} />
+              <Route path="/Product/:id" element={<ProductDetail />} />
               <Route path="/ShoppingBasket" element={<ShoppingBasket />} />
             </Route>
           </Routes>
