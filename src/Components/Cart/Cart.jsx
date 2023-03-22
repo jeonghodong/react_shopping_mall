@@ -52,9 +52,27 @@ const Delivery = styled.span`
   color: #c4c4c4;
 `;
 function Cart({ cart, setCart }) {
-  const downCount = () => {};
-  const upCount = () => {};
+  const downCount = (id) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === id && item.quantity > 1) {
+        item.quantity -= 1;
+        item.price - item.price;
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
 
+  const upCount = (id) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === id) {
+        item.quantity += 1;
+        item.price + item.price;
+      }
+      return item;
+    });
+    setCart(updatedCart);
+  };
   return (
     <>
       {cart.map((v) => (
@@ -62,13 +80,13 @@ function Cart({ cart, setCart }) {
           <Img src={v.image} alt="cartImg" />
           <InfoBox>
             <Name>{v.name}</Name>
-            <Price>{v.price.toLocaleString()}원</Price>
+            <Price>{v.price}원</Price>
             <Delivery>택배배송 / 무료배송</Delivery>
           </InfoBox>
           <CountBox>
-            <CountBtn onClick={downCount}>-</CountBtn>
+            <CountBtn onClick={() => downCount(v.id)}>-</CountBtn>
             <CountNum>{v.quantity}</CountNum>
-            <CountBtn onClick={upCount}>+</CountBtn>
+            <CountBtn onClick={() => upCount(v.id)}>+</CountBtn>
           </CountBox>
           <div>
             <span>삭제</span>
@@ -78,9 +96,10 @@ function Cart({ cart, setCart }) {
     </>
   );
 }
-// 갯수추가시 카트 금액 변경하는 기능으로
+
 // 장바구니 개별 삭제 기능
 // 새로고침해도 장바구니에 담아놓은 이력 안사라지게 하는 방법
 // footer 섹션 만들기
+// 뚜식이 상품 하나 만들어놓기
 
 export default Cart;

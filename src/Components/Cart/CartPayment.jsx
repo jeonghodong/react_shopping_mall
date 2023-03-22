@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Wrap = styled.div`
@@ -58,7 +58,13 @@ const Payment = styled.span`
   margin-top: 20px;
 `;
 function CartPayment({ cart }) {
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const newTotalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    setTotalPrice(newTotalPrice);
+  }, [cart]);
+
   return (
     <>
       <Wrap>

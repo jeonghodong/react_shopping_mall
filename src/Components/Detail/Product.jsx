@@ -118,7 +118,7 @@ function Product({ cart, setCart }) {
       name: product.name,
       image: product.image,
       quantity: count,
-      price: totalPrice,
+      price: product.price,
     };
     setCart([...cart, cartItem]);
     alert("장바구니에 담았다냥");
