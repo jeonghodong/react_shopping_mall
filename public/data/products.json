@@ -5,84 +5,96 @@
       "name": "코코박스 스크래쳐",
       "price": 3300,
       "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "delivery": "무료배송",
+      "food": false
     },
     {
       "id": 2,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "펫킷 스크래쳐 하우스 블루",
+      "price": 15000,
+      "image": "../image/P2.jpeg",
+      "delivery": "무료배송",
+      "food": false
     },
     {
       "id": 3,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "에이프로 캣 가다랑어 5개입",
+      "price": 1900,
+      "image": "../image/P3.jpeg",
+      "delivery": "무료배송",
+      "food": true
     },
     {
       "id": 4,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "네코이찌 푸드볼 L 사쿠라블루에디션",
+      "price": 17000,
+      "image": "../image/P4.jpeg",
+      "delivery": "무료배송",
+      "food": false
     },
     {
       "id": 5,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "진짜 츄르 참치 5개입",
+      "price": 2350,
+      "image": "../image/P5.jpeg",
+      "delivery": "무료배송",
+      "food": true
     },
     {
       "id": 6,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "루어캣 숨숨집 스크래쳐 37",
+      "price": 23000,
+      "image": "../image/P6.jpeg",
+      "delivery": "무료배송",
+      "food": false
     },
     {
       "id": 7,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "네츄럴코어 캣쵸 연어 240g",
+      "price": 6900,
+      "image": "../image/P7.jpeg",
+      "delivery": "무료배송",
+      "food": true
     },
     {
       "id": 8,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "아카나 바운티풀 캐치 캣 340g",
+      "price": 4900,
+      "image": "../image/P8.jpeg",
+      "delivery": "무료배송",
+      "food": true
     },
     {
       "id": 9,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "페피소드 슈슈쿠션 그레이",
+      "price": 43000,
+      "image": "../image/P9.jpeg",
+      "delivery": "무료배송",
+      "food": false
     },
     {
       "id": 10,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "토이거 트릿볼 블루",
+      "price": 2050,
+      "image": "../image/P10.jpeg",
+      "delivery": "무료배송",
+      "food": false
     },
     {
       "id": 11,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "캣퓨어 미니스틱 바나나 8개입",
+      "price": 2400,
+      "image": "../image/P11.jpeg",
+      "delivery": "무료배송",
+      "food": true
     },
     {
       "id": 12,
-      "name": "코코박스 스크래쳐",
-      "price": 3300,
-      "image": "../image/P1.jpeg",
-      "delivery": "무료배송"
+      "name": "캣가든 매운탕 도미",
+      "price": 4500,
+      "image": "../image/P12.jpeg",
+      "delivery": "무료배송",
+      "food": false
     }
   ]
 }

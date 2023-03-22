@@ -1,10 +1,10 @@
 import React from "react";
 import Product from "../Components/Detail/Product";
 
-function ProductDetail() {
+function ProductDetail({ setCart, cart }) {
   return (
     <>
-      <Product />
+      <Product setCart={setCart} cart={cart} />
     </>
   );
 }

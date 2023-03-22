@@ -5,6 +5,7 @@ import axios from "axios";
 import Products from "../Components/Main/Products";
 
 const Wrap = styled.div`
+  padding: 0rem 5rem 0rem 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   place-items: center;

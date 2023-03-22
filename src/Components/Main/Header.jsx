@@ -7,45 +7,45 @@ import { useNavigate } from "react-router-dom";
 
 const Logo = styled.img`
   cursor: pointer;
+  width: 9vw;
 `;
 const TopWrap = styled.div`
   border-bottom: 0.5px solid #eeeeee;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 0.5rem 2rem 0.5rem 2rem;
 `;
 const Left = styled.div`
   display: flex;
   align-items: center;
   & span {
-    font-size: 0.9vw;
+    font-size: 0.7vw;
   }
 `;
 const Right = styled.div`
   display: flex;
-
   & span {
-    font-size: 0.9vw;
+    font-size: 0.7vw;
     margin-right: 1rem;
     cursor: pointer;
   }
 `;
 const RightBar = styled.div`
   & img {
-    width: 2vw;
+    width: 1.5vw;
     margin-right: 2rem;
     cursor: pointer;
   }
 `;
 const Input = styled.input`
   width: 45vw;
-  height: 60px;
+  height: 40px;
   background-color: #eeeeee;
   outline: none;
   border: none;
-  border-radius: 20px;
-  font-size: 20px;
+  border-radius: 10px;
+  font-size: 14px;
   padding: 0rem 1rem 0rem 1rem;
   margin-left: 2rem;
   font-weight: light;
@@ -55,10 +55,9 @@ const Wrap = styled.div`
   position: sticky;
   top: 0;
   background-color: white;
-  margin-bottom: 3rem;
   z-index: 9999;
 `;
-function Header() {
+function Header({ cart }) {
   const navigate = useNavigate();
   console.log("로그인 전 헤더 렌더링");
   return (
@@ -82,7 +81,8 @@ function Header() {
             <img src={User} alt="userPage" onClick={() => navigate("/Profile")} />
           </RightBar>
           <RightBar>
-            <img src={Cart} alt="cartPage" style={{ width: "2.5vw" }} onClick={() => navigate("ShoppingBasket")} />
+            <img src={Cart} alt="cartPage" style={{ width: "2vw" }} onClick={() => navigate("ShoppingBasket")} />
+            {cart.length >= 1 && <span>{cart.length}</span>}
           </RightBar>
         </Right>
       </TopWrap>

@@ -15,19 +15,20 @@ import ProductDetail from "./Pages/ProductDetail";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
           <GlobalStyles />
           <Routes>
-            <Route path="/" element={<Home />}>
+            <Route path="/" element={<Home cart={cart} />}>
               <Route path="/Login" element={<Login />} />
               <Route path="/SignUp" element={<SignUp />} />
               <Route path="/Profile" element={<Profile />} />
               <Route path="/Cats" element={<Cats setProducts={setProducts} products={products} />} />
-              <Route path="/Product/:id" element={<ProductDetail />} />
-              <Route path="/ShoppingBasket" element={<ShoppingBasket />} />
+              <Route path="/Product/:id" element={<ProductDetail cart={cart} setCart={setCart} />} />
+              <Route path="/ShoppingBasket" element={<ShoppingBasket cart={cart} setCart={setCart} />} />
             </Route>
           </Routes>
         </Router>

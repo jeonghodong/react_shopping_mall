@@ -6,9 +6,10 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 3rem;
+  cursor: pointer;
   & img {
     border-radius: 10px;
-    width: 20vw;
+    width: 17vw;
     margin-bottom: 10px;
   }
 `;
