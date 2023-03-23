@@ -2,8 +2,9 @@ import Cart from "../Components/Cart/Cart";
 import CartHeader from "../Components/Cart/CartHeader";
 import CartPayment from "../Components/Cart/CartPayment";
 import styled from "styled-components";
-import { collection } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import db from "../firebase";
+import { useEffect } from "react";
 
 const Wrap = styled.div`
   display: flex;
@@ -22,6 +23,12 @@ const NoneBox = styled.div`
 
 function ShoppingBasket({ cart, setCart }) {
   console.log(db);
+  const cartRef = collection(db.db, "Cart");
+  useEffect(() => {
+    getDocs(cartRef)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <Wrap>
       <CartHeader cart={cart} setCart={setCart} />
