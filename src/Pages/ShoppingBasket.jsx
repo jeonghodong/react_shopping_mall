@@ -22,7 +22,7 @@ function ShoppingBasket({ cart, setCart }) {
   console.log(cart);
   return (
     <Wrap>
-      <CartHeader />
+      <CartHeader cart={cart} setCart={setCart} />
       {cart.length ? (
         <Cart cart={cart} setCart={setCart} />
       ) : (
