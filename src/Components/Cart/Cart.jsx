@@ -110,9 +110,9 @@ function Cart({ cart, setCart }) {
   );
 }
 
-// 장바구니 개별 삭제 기능
 // firebase이용하여 사용자가 장바구니 담았을때 firebase에 저장하게 하여서 로그아웃 후 새로고침 후에도 장바구니가 유지되도록하기
 // footer 섹션 만들기
+
 // 뚜식이 상품 하나 만들어놓기
 
 export default Cart;

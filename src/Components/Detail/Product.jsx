@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import cash from "../../assets/sack-dollar-solid.svg";
 import leaf from "../../assets/leaf-solid.svg";
@@ -95,10 +95,51 @@ const DeliveryBox = styled.div`
 const DeliveryText = styled.span`
   font-size: 0.7vw;
 `;
+
+const Modal = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #00000076;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalInbox = styled.div`
+  padding: 1rem;
+  background-color: white;
+  width: 27vw;
+  height: 20vh;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const ModalBtn = styled.button`
+  cursor: pointer;
+  border: none;
+  width: 20vw;
+  height: 5vh;
+  background-color: #6767ea;
+  margin-top: 10px;
+  color: white;
+  border-radius: 10px;
+`;
+const ModalText = styled.span`
+  font-size: 1vw;
+  color: gray;
+`;
 function Product({ cart, setCart }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState({});
   const [count, setCount] = useState(1);
+  const [sucCart, setSucCart] = useState(false);
 
   // 물건의 아이디값과 동일한 값을 가진 데이터만 가져옴
   useEffect(() => {
@@ -113,15 +154,34 @@ function Product({ cart, setCart }) {
 
   // 장바구니에 물건담기
   const handleCart = () => {
-    const cartItem = {
-      id: product.id,
-      name: product.name,
-      image: product.image,
-      quantity: count,
-      price: product.price,
-    };
-    setCart([...cart, cartItem]);
-    alert("장바구니에 담았다냥");
+    // 장바구니에 담을 상품의 아이디가 동일한 상품의 index를 찾아냅니다 없으면 -1를 반환합니다.
+    const itemIndex = cart.findIndex((item) => item.id === product.id);
+    // 장바구니에 상품이 없다면 장바구니에 담습니다.
+    if (itemIndex === -1) {
+      const cartItem = {
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        quantity: count,
+        price: product.price,
+      };
+      setCart([...cart, cartItem]);
+      setSucCart(true);
+    } else {
+      // 장바구니에 상품이 이미 있다면 그 상품의 갯수를 늘립니다.
+      const updatedCart = cart.map((item, index) => {
+        if (index === itemIndex) {
+          return {
+            ...item,
+            quantity: item.quantity + count,
+          };
+        } else {
+          return item;
+        }
+      });
+      setCart(updatedCart);
+      setSucCart(true);
+    }
   };
   console.log(cart);
 
@@ -141,6 +201,17 @@ function Product({ cart, setCart }) {
 
   return (
     <Wrap>
+      {sucCart === true ? (
+        <Modal onClick={() => setSucCart(false)}>
+          <ModalInbox onClick={(e) => e.stopPropagation()}>
+            <ModalText>집사 장바구니에 넣어놨다냥!</ModalText>
+            <ModalBtn onClick={() => setSucCart(false)}>확인</ModalBtn>
+            <ModalBtn style={{ backgroundColor: "red" }} onClick={() => navigate("/ShoppingBasket")}>
+              장바구니 이동
+            </ModalBtn>
+          </ModalInbox>
+        </Modal>
+      ) : null}
       <LeftBox>
         <Img src={product.image} alt="img" />
       </LeftBox>
