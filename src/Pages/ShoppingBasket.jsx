@@ -2,6 +2,8 @@ import Cart from "../Components/Cart/Cart";
 import CartHeader from "../Components/Cart/CartHeader";
 import CartPayment from "../Components/Cart/CartPayment";
 import styled from "styled-components";
+import { collection } from "firebase/firestore";
+import db from "../firebase";
 
 const Wrap = styled.div`
   display: flex;
@@ -19,7 +21,7 @@ const NoneBox = styled.div`
 `;
 
 function ShoppingBasket({ cart, setCart }) {
-  console.log(cart);
+  console.log(db);
   return (
     <Wrap>
       <CartHeader cart={cart} setCart={setCart} />
