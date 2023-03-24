@@ -169,7 +169,6 @@ function Product({ cart, setCart }) {
     if (existingProduct) {
       const existingData = existingProduct.data();
       const newQuantity = existingData.quantity + count;
-      const newPrice = existingData.price + product.price * count;
 
       await setDoc(existingProduct.ref, {
         userId: userId,
@@ -177,7 +176,7 @@ function Product({ cart, setCart }) {
         name: product.name,
         image: product.image,
         quantity: newQuantity,
-        price: newPrice,
+        price: product.price,
       });
     } else {
       await setDoc(doc(usersCollectionRef, `${userId}_${product.id}`), {
@@ -186,7 +185,7 @@ function Product({ cart, setCart }) {
         name: product.name,
         image: product.image,
         quantity: count,
-        price: product.price * count,
+        price: product.price,
       });
     }
   };

@@ -1,5 +1,6 @@
+import { deleteDoc, doc } from "firebase/firestore";
 import styled from "styled-components";
-
+import db from "../../firebase";
 const Wrap = styled.div`
   width: 60vw;
   border: 1px solid #dfdfdf;
@@ -82,9 +83,18 @@ function Cart({ cart, setCart, users, setUsers }) {
     setCart(updatedCart);
   };
 
-  const deleteCart = (id) => {
-    const handleCart = cart.filter((v) => v.id !== id);
-    setCart(handleCart);
+  const deleteCart = async (id) => {
+    // 내가 삭제하고자 하는 db의 컬렉션의 id를 뒤지면서 데이터를 찾는다
+    const userDoc = doc(db.db, "users", id);
+    // deleteDoc을 이용해서 삭제
+    await deleteDoc(userDoc);
+
+    deleteCart2(id);
+  };
+
+  const deleteCart2 = (id) => {
+    const handleCart = users.filter((v) => v.id !== id);
+    setUsers(handleCart);
   };
 
   return (
@@ -103,7 +113,13 @@ function Cart({ cart, setCart, users, setUsers }) {
             <CountBtn onClick={() => upCount(v.id)}>+</CountBtn>
           </CountBox>
           <div>
-            <DeleteBtn onClick={() => deleteCart(v.id)}>삭제</DeleteBtn>
+            <DeleteBtn
+              onClick={() => {
+                deleteCart(v.id);
+              }}
+            >
+              삭제
+            </DeleteBtn>
           </div>
         </Wrap>
       ))}

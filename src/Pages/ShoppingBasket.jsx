@@ -46,7 +46,7 @@ function ShoppingBasket({ cart, setCart }) {
 
   return (
     <Wrap>
-      <CartHeader cart={cart} setCart={setCart} />
+      <CartHeader cart={cart} setCart={setCart} users={users} setUsers={setUsers} />
       {users.length ? (
         <Cart cart={cart} setCart={setCart} users={users} setUsers={setUsers} />
       ) : (
