@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import db from "../../firebase";
+
 const Wrap = styled.div`
   width: 60vw;
   border: 1px solid #dfdfdf;
@@ -71,21 +71,14 @@ function Cart({ cart, setCart, users, setUsers }) {
     setCart(updatedCart);
   };
 
-  const upCount = async (id) => {
-    const updatedCart = cart.map(async (item) => {
+  const upCount = (id) => {
+    const updatedCart = cart.map((item) => {
       if (item.id === id) {
         item.quantity += 1;
-        item.price += item.price;
-        const userDoc = doc(db, "users", id);
-        const newField = {
-          quantity: item.quantity,
-          price: item.price,
-        };
-        await setDoc(userDoc, newField);
+        item.price + item.price;
       }
       return item;
     });
-    await Promise.all(updatedCart);
     setCart(updatedCart);
   };
 
