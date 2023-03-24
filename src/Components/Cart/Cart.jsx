@@ -1,4 +1,4 @@
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
 import styled from "styled-components";
 import db from "../../firebase";
 const Wrap = styled.div`
@@ -61,26 +61,46 @@ const DeleteBtn = styled.button`
   border-radius: 10px;
 `;
 function Cart({ cart, setCart, users, setUsers }) {
-  const downCount = (id) => {
-    const updatedCart = users.map((item) => {
-      if (item.id === id && item.quantity > 1) {
-        item.quantity -= 1;
-        item.price - item.price;
-      }
-      return item;
-    });
-    setCart(updatedCart);
+  const downCount = async (id) => {
+    const userRef = doc(db.db, "users", id);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists() && userDoc.data().quantity > 1) {
+      const newQuantity = userDoc.data().quantity - 1;
+      const updatedData = { quantity: newQuantity };
+      await updateDoc(userRef, updatedData);
+      const updatedCart = users.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            quantity: newQuantity,
+          };
+        }
+        return item;
+      });
+      setCart(updatedCart);
+      setUsers(updatedCart);
+    }
   };
 
-  const upCount = (id) => {
-    const updatedCart = users.map((item) => {
-      if (item.id === id) {
-        item.quantity += 1;
-        item.price + item.price;
-      }
-      return item;
-    });
-    setCart(updatedCart);
+  const upCount = async (id) => {
+    const userRef = doc(db.db, "users", id);
+    const userDoc = await getDoc(userRef);
+    if (userDoc.exists()) {
+      const newQuantity = userDoc.data().quantity + 1;
+      const updatedData = { quantity: newQuantity };
+      await updateDoc(userRef, updatedData);
+      const updatedCart = users.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            quantity: newQuantity,
+          };
+        }
+        return item;
+      });
+      setCart(updatedCart);
+      setUsers(updatedCart);
+    }
   };
 
   const deleteCart = async (id) => {
