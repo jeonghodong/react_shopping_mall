@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import db from "../../firebase";
 const Wrap = styled.div`
   width: 60vw;
   border: 1px solid #dfdfdf;
@@ -59,7 +59,7 @@ const DeleteBtn = styled.button`
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 10px;
 `;
-function Cart({ cart, setCart }) {
+function Cart({ cart, setCart, users, setUsers }) {
   const downCount = (id) => {
     const updatedCart = cart.map((item) => {
       if (item.id === id && item.quantity > 1) {
@@ -71,14 +71,21 @@ function Cart({ cart, setCart }) {
     setCart(updatedCart);
   };
 
-  const upCount = (id) => {
-    const updatedCart = cart.map((item) => {
+  const upCount = async (id) => {
+    const updatedCart = cart.map(async (item) => {
       if (item.id === id) {
         item.quantity += 1;
-        item.price + item.price;
+        item.price += item.price;
+        const userDoc = doc(db, "users", id);
+        const newField = {
+          quantity: item.quantity,
+          price: item.price,
+        };
+        await setDoc(userDoc, newField);
       }
       return item;
     });
+    await Promise.all(updatedCart);
     setCart(updatedCart);
   };
 
@@ -86,9 +93,10 @@ function Cart({ cart, setCart }) {
     const handleCart = cart.filter((v) => v.id !== id);
     setCart(handleCart);
   };
+
   return (
     <>
-      {cart.map((v) => (
+      {users.map((v) => (
         <Wrap key={v.id}>
           <Img src={v.image} alt="cartImg" />
           <InfoBox>

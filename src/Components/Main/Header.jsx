@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CatLogo from "../../assets/Logo.svg";
 import User from "../../assets/user-solid.svg";
 import Cart from "../../assets/cart-shopping-solid.svg";
+import db from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 const Logo = styled.img`
   cursor: pointer;
@@ -59,7 +62,31 @@ const Wrap = styled.div`
 `;
 function Header({ cart }) {
   const navigate = useNavigate();
-  console.log("로그인 전 헤더 렌더링");
+  const [users, setUsers] = useState([]);
+  const usersCollectionRef = collection(db.db, "users");
+  const userId = useSelector((store) => store.loginState.userId);
+
+  // 해당 uid를 가진 사람의 장바구니 데이터만 들고옵니다.
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getDocs(usersCollectionRef);
+      const filteredData = data.docs.filter((doc) => doc.data().userId === userId);
+      const newData = filteredData.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setUsers(newData);
+    };
+
+    getUsers();
+
+    // Create a listener to update users in real-time when the database changes
+    const unsubscribe = onSnapshot(usersCollectionRef, (snapshot) => {
+      const updatedData = snapshot.docs.filter((doc) => doc.data().userId === userId);
+      const newData = updatedData.map((doc) => ({ ...doc.data(), id: doc.id }));
+      setUsers(newData);
+    });
+
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
   return (
     <Wrap>
       <TopWrap>
@@ -82,7 +109,7 @@ function Header({ cart }) {
           </RightBar>
           <RightBar>
             <img src={Cart} alt="cartPage" style={{ width: "2vw" }} onClick={() => navigate("ShoppingBasket")} />
-            {cart.length >= 1 && <span>{cart.length}</span>}
+            {users.length >= 1 && <span>{users.length}</span>}
           </RightBar>
         </Right>
       </TopWrap>

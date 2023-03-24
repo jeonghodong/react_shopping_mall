@@ -57,13 +57,13 @@ const Payment = styled.span`
   border-radius: 20px;
   margin-top: 20px;
 `;
-function CartPayment({ cart }) {
+function CartPayment({ users, cart }) {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const newTotalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    const newTotalPrice = users.reduce((total, item) => total + item.price * item.quantity, 0);
     setTotalPrice(newTotalPrice);
-  }, [cart]);
+  }, [cart, users]);
 
   return (
     <>

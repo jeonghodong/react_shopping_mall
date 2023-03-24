@@ -5,6 +5,9 @@ import styled from "styled-components";
 import cash from "../../assets/sack-dollar-solid.svg";
 import leaf from "../../assets/leaf-solid.svg";
 import truck from "../../assets/truck-solid.svg";
+import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
+import db from "../../firebase";
+import { useSelector } from "react-redux";
 const Wrap = styled.div`
   padding: 0rem 10rem 0rem 10rem;
   display: grid;
@@ -140,6 +143,7 @@ function Product({ cart, setCart }) {
   const [product, setProduct] = useState({});
   const [count, setCount] = useState(1);
   const [sucCart, setSucCart] = useState(false);
+  const userId = useSelector((store) => store.loginState.userId);
 
   // 물건의 아이디값과 동일한 값을 가진 데이터만 가져옴
   useEffect(() => {
@@ -151,6 +155,41 @@ function Product({ cart, setCart }) {
   // 날짜 및 시간
   let today = new Date();
   let week = ["일", "월", "화", "수", "목", "금", "토"];
+
+  // firestore 정보저장
+  const usersCollectionRef = collection(db.db, "users");
+
+  const createUsers = async () => {
+    const querySnapshot = await getDocs(usersCollectionRef);
+    const existingProduct = querySnapshot.docs.find((doc) => {
+      const data = doc.data();
+      return data.userId === userId && data.id === product.id;
+    });
+
+    if (existingProduct) {
+      const existingData = existingProduct.data();
+      const newQuantity = existingData.quantity + count;
+      const newPrice = existingData.price + product.price * count;
+
+      await setDoc(existingProduct.ref, {
+        userId: userId,
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        quantity: newQuantity,
+        price: newPrice,
+      });
+    } else {
+      await setDoc(doc(usersCollectionRef, `${userId}_${product.id}`), {
+        userId: userId,
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        quantity: count,
+        price: product.price * count,
+      });
+    }
+  };
 
   // 장바구니에 물건담기
   const handleCart = () => {
@@ -296,7 +335,14 @@ function Product({ cart, setCart }) {
             </div>
           </OrderInBox>
         </OrderBox>
-        <CartBtn onClick={() => handleCart()}>장바구니 담기</CartBtn>
+        <CartBtn
+          onClick={() => {
+            handleCart();
+            createUsers();
+          }}
+        >
+          장바구니 담기
+        </CartBtn>
       </RightBox>
     </Wrap>
   );

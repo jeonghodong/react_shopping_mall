@@ -16,6 +16,7 @@ import ProductDetail from "./Pages/ProductDetail";
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
