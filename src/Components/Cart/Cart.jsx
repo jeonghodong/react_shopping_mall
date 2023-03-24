@@ -62,7 +62,7 @@ const DeleteBtn = styled.button`
 `;
 function Cart({ cart, setCart, users, setUsers }) {
   const downCount = (id) => {
-    const updatedCart = cart.map((item) => {
+    const updatedCart = users.map((item) => {
       if (item.id === id && item.quantity > 1) {
         item.quantity -= 1;
         item.price - item.price;
@@ -73,7 +73,7 @@ function Cart({ cart, setCart, users, setUsers }) {
   };
 
   const upCount = (id) => {
-    const updatedCart = cart.map((item) => {
+    const updatedCart = users.map((item) => {
       if (item.id === id) {
         item.quantity += 1;
         item.price + item.price;
