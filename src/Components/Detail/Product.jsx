@@ -237,13 +237,27 @@ function Product({ cart, setCart }) {
     setCount(count + 1);
   };
 
+  //ESC 클릭시 document자체를 잡아준 다음 handleEscPress 실행
+  useEffect(() => {
+    const handleEscPress = (e) => {
+      if (e.keyCode === 27) {
+        setSucCart(false);
+      }
+    };
+    document.addEventListener("keydown", handleEscPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscPress);
+    };
+  }, []);
+
   return (
     <Wrap>
       {sucCart === true ? (
         <Modal onClick={() => setSucCart(false)}>
           <ModalInbox onClick={(e) => e.stopPropagation()}>
             <ModalText>집사 장바구니에 넣어놨다냥!</ModalText>
-            <ModalBtn onClick={() => setSucCart(false)}>확인</ModalBtn>
+            <ModalBtn onClick={() => setSucCart(false)}>쇼핑 계속하기</ModalBtn>
             <ModalBtn style={{ backgroundColor: "red" }} onClick={() => navigate("/ShoppingBasket")}>
               장바구니 이동
             </ModalBtn>

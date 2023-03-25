@@ -6,7 +6,8 @@ import PostModal from "./PostModal";
 const Wrap = styled.div`
   display: flex;
   justify-content: space-around;
-  background-color: #eeeeee;
+  background-color: rgb(166, 70, 244);
+  color: white;
   position: relative;
   padding: 1rem;
 
@@ -25,7 +26,6 @@ const Writing = styled.span`
   top: 10px;
   right: -100px;
   z-index: 100;
-  background-color: red;
   display: inline;
 `;
 function PostHeader({ modal, setModal, setPosts, posts, setWord, word }) {

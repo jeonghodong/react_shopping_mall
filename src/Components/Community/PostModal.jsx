@@ -1,5 +1,5 @@
 import { addDoc, collection } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import db from "../../firebase";
@@ -88,6 +88,20 @@ function PostModal({ setModal, setPosts, posts }) {
     setModal(false);
     createCart();
   };
+
+  //ESC 클릭시 document자체를 잡아준 다음 handleEscPress 실행
+  useEffect(() => {
+    const handleEscPress = (e) => {
+      if (e.keyCode === 27) {
+        setModal(false);
+      }
+    };
+    document.addEventListener("keydown", handleEscPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscPress);
+    };
+  }, []);
 
   return (
     <Wrap onClick={() => setModal(false)} onSubmit={handleData}>

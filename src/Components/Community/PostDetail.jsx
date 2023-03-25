@@ -16,7 +16,6 @@ function PostDetail({ posts, setPosts }) {
         <span>{detail.title}</span>
         <span>{detail.name}</span>
         <span>{detail.text}</span>
-        <span>{detail.text}</span>
       </div>
     </>
   );
