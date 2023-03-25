@@ -100,7 +100,7 @@ function Header({ cart }) {
       </TopWrap>
       <TopWrap>
         <Left>
-          <Logo src={CatLogo} alt="logo" onClick={() => navigate("/Cats")} />
+          <Logo src={CatLogo} alt="logo" onClick={() => navigate("/")} />
           <Input type="text" placeholder="어떤 상품을 찾냐옹?" />
         </Left>
         <Right>
