@@ -132,6 +132,9 @@ function LoginHeader({ cart }) {
             <img src={Cart} alt="cartPage" style={{ width: "2.5vw" }} onClick={() => navigate("ShoppingBasket")} />
             {users.length >= 1 && <span>{users.length}</span>}
           </RightBar>
+          <RightBar>
+            <span onClick={() => navigate("/Community")}>커뮤니티 이동</span>
+          </RightBar>
         </Right>
       </TopWrap>
     </Wrap>
