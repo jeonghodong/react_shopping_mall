@@ -81,7 +81,7 @@ function PostModal({ setModal, setPosts, posts }) {
   // 데이터보내기
   const handleData = (e) => {
     e.preventDefault();
-    if (text === "" && title === "") {
+    if (text === "" || title === "") {
       return;
     }
     setPosts([data, ...posts]);
