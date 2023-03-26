@@ -102,7 +102,7 @@ function Login() {
             if (res.operationType === "signIn") {
               const user = { userId: res.user.uid, name: res.user.displayName, email: res.user.email, isLogin: true };
               dispatch(login(user));
-              navigate("/Cats");
+              navigate("/");
               setEmail("");
               setPassword("");
               console.log(res);

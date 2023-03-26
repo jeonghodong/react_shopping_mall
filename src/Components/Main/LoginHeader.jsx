@@ -109,7 +109,7 @@ function LoginHeader({ cart }) {
           <LogoutBtn
             onClick={() => {
               dispatch(reset());
-              navigate("/Cats");
+              navigate("/");
             }}
           >
             로그아웃

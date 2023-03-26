@@ -26,8 +26,8 @@ function Posts({ posts }) {
   return (
     <>
       {posts.map((v) => (
-        <>
-          <Wrap key={v.bid}>
+        <div key={v.bid}>
+          <Wrap>
             <span style={{ cursor: "pointer" }} onClick={() => navigate(`/CommunityDetail/${v.bid}`)}>
               {v.title}
             </span>
@@ -36,7 +36,7 @@ function Posts({ posts }) {
             <span>{v.count}</span>
           </Wrap>
           <Line>{""}</Line>
-        </>
+        </div>
       ))}
     </>
   );

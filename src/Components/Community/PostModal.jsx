@@ -1,4 +1,4 @@
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -30,6 +30,7 @@ const Textarea = styled.textarea`
   border: none;
   outline: none;
   resize: none;
+  white-space: pre;
 `;
 
 const Form = styled.form`
