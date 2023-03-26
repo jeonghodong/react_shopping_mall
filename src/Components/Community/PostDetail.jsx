@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import db from "../../firebase";
+import PostChangeModal from "./PostChangeModal";
 
 const Wrap = styled.div`
   width: 100vw;
@@ -28,13 +29,19 @@ const Title = styled.span`
   font-weight: bold;
   margin-bottom: 2rem;
 `;
+
+const Date = styled.span`
+  font-size: 0.7vw;
+`;
+
+const View = styled.span`
+  font-size: 0.8vw;
+`;
 const Right = styled.div``;
 const Left = styled.div``;
 const Text = styled.pre``;
 
 const Footer = styled.div`
-  margin-right: 7rem;
-  margin-left: 7rem;
   display: flex;
   justify-content: flex-end;
   border-bottom: 1px solid #eeeeee;
@@ -43,7 +50,8 @@ const Footer = styled.div`
     cursor: pointer;
   }
 `;
-function PostDetail({ posts, setPosts }) {
+function PostDetail({ posts, setPosts, setUpdateCount }) {
+  const [cModal, setCModal] = useState(false);
   const [detail, setDetail] = useState({});
   const userId = useSelector((store) => store.loginState.userId);
 
@@ -69,29 +77,38 @@ function PostDetail({ posts, setPosts }) {
 
   return (
     <>
-      <Wrap>
-        <Inwrap1>
-          <Title>{detail.title}</Title>
-          <span>{detail.date}</span>
-        </Inwrap1>
-        <InWrap>
-          <Left>
-            <span>{detail.name}</span>
-          </Left>
-          <Right>
-            <span>조회수 {detail.count}</span>
-          </Right>
-        </InWrap>
-        <Text>{detail.text}</Text>
-      </Wrap>
-      <Footer>
-        {userId === detail.userId ? (
-          <>
-            <span style={{ marginRight: "2rem" }}>수정</span>
-            <span onClick={() => deletePost()}>삭제</span>
-          </>
-        ) : null}
-      </Footer>
+      {cModal && (
+        <PostChangeModal setUpdateCount={setUpdateCount} setDetail={setDetail} detail={detail} setCModal={setCModal} />
+      )}
+      {detail && (
+        <>
+          <Wrap>
+            <Inwrap1>
+              <Title>{detail.title}</Title>
+              <Date>{detail.date}</Date>
+            </Inwrap1>
+            <InWrap>
+              <Left>
+                <span style={{ fontSize: "0.7vw" }}>집사명 : {detail.name}</span>
+              </Left>
+              <Right>
+                <View>조회수 {detail.view}</View>
+              </Right>
+            </InWrap>
+            <Text>{detail.text}</Text>
+            <Footer>
+              {userId === detail.userId ? (
+                <>
+                  <span style={{ marginRight: "2rem" }} onClick={() => setCModal(true)}>
+                    수정
+                  </span>
+                  <span onClick={() => deletePost()}>삭제</span>
+                </>
+              ) : null}
+            </Footer>
+          </Wrap>
+        </>
+      )}
     </>
   );
 }

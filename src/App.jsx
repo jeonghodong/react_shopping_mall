@@ -18,10 +18,12 @@ import db from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 function App() {
+  const [updateCount, setUpdateCount] = useState(0);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [modal, setModal] = useState(false);
   const [posts, setPosts] = useState([]);
+
   const usersCollectionRef = collection(db.db, "posts");
   useEffect(() => {
     const getUsers = async () => {
@@ -31,7 +33,7 @@ function App() {
     };
 
     getUsers();
-  }, [posts.length]);
+  }, [posts.length, updateCount]);
 
   console.log(posts);
 
@@ -52,7 +54,10 @@ function App() {
                 path="/Community"
                 element={<Community modal={modal} setModal={setModal} posts={posts} setPosts={setPosts} />}
               />
-              <Route path="/CommunityDetail/:id" element={<CommunityDetail posts={posts} setPosts={setPosts} />} />
+              <Route
+                path="/CommunityDetail/:id"
+                element={<CommunityDetail setUpdateCount={setUpdateCount} posts={posts} setPosts={setPosts} />}
+              />
             </Route>
           </Routes>
         </Router>

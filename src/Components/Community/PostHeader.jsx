@@ -28,17 +28,17 @@ const Writing = styled.span`
   z-index: 100;
   display: inline;
 `;
-function PostHeader({ modal, setModal, setPosts, posts, setWord, word }) {
+function PostHeader({ modal, setModal, setPosts, posts }) {
   return (
     <>
       <Wrap>
         <span>제목</span>
-        <span>작성자</span>
+        <span>집사명</span>
         <span>작성날짜</span>
         <span>조회수</span>
         <Writing onClick={() => setModal(true)}>글쓰기</Writing>
       </Wrap>
-      {modal && <PostModal word={word} setWord={setWord} setModal={setModal} setPosts={setPosts} posts={posts} />}
+      {modal && <PostModal setModal={setModal} setPosts={setPosts} posts={posts} />}
     </>
   );
 }

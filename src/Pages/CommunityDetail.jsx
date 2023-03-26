@@ -1,10 +1,10 @@
 import React from "react";
 import PostDetail from "../Components/Community/PostDetail";
 
-function CommunityDetail({ posts, setPosts }) {
+function CommunityDetail({ posts, setPosts, setUpdateCount }) {
   return (
     <>
-      <PostDetail posts={posts} setPosts={setPosts} />
+      <PostDetail setUpdateCount={setUpdateCount} posts={posts} setPosts={setPosts} />
     </>
   );
 }

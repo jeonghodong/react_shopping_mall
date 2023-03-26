@@ -5,10 +5,10 @@ import styled from "styled-components";
 import db from "../../firebase";
 
 const Wrap = styled.div`
+  position: fixed;
   width: 100vw;
   height: 100vh;
   background-color: #00000076;
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 100000;
@@ -21,6 +21,8 @@ const Input = styled.input`
   border: none;
   outline: none;
   margin-bottom: 2rem;
+  padding: 1rem;
+  font-size: 1vw;
 `;
 
 const Textarea = styled.textarea`
@@ -31,6 +33,11 @@ const Textarea = styled.textarea`
   outline: none;
   resize: none;
   white-space: pre;
+  padding: 1rem;
+  font-size: 1vw;
+  &::placeholder {
+    font-size: 1vw;
+  }
 `;
 
 const Form = styled.form`
@@ -62,7 +69,7 @@ function PostModal({ setModal, setPosts, posts }) {
     name: name,
     text: text,
     date: year + "." + month + "." + date + " " + hours + ":" + minutes,
-    count: 2,
+    view: "0",
   };
 
   // firestore에 포스트 저장

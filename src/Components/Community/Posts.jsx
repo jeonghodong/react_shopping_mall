@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -23,17 +22,23 @@ const Line = styled.div`
 `;
 function Posts({ posts }) {
   const navigate = useNavigate();
+
   return (
     <>
       {posts.map((v) => (
         <div key={v.bid}>
           <Wrap>
-            <span style={{ cursor: "pointer" }} onClick={() => navigate(`/CommunityDetail/${v.bid}`)}>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate(`/CommunityDetail/${v.bid}`);
+              }}
+            >
               {v.title}
             </span>
             <span>{v.name}</span>
             <span>{v.date}</span>
-            <span>{v.count}</span>
+            <span>{v.view}</span>
           </Wrap>
           <Line>{""}</Line>
         </div>
