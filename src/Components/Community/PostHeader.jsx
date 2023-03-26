@@ -34,7 +34,7 @@ function PostHeader({ modal, setModal, setPosts, posts }) {
       <Wrap>
         <span>제목</span>
         <span>집사명</span>
-        <span>작성날짜</span>
+        <span>작성일</span>
         <span>조회수</span>
         <Writing onClick={() => setModal(true)}>글쓰기</Writing>
       </Wrap>
