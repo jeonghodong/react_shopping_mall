@@ -26,7 +26,7 @@ function Posts({ posts }) {
   return (
     <>
       {posts.map((v) => (
-        <div key={v.bid}>
+        <div key={v.id}>
           <Wrap>
             <span
               style={{ cursor: "pointer" }}
