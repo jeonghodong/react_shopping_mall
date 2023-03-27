@@ -226,10 +226,9 @@ function Product({ cart, setCart }) {
       });
       setCart(updatedCart);
       setSucCart(true);
+      createUsers();
     }
   };
-  console.log(cart);
-
   // 총 가격
   const totalPrice = product.price?.toLocaleString() && count * product.price;
 
@@ -358,7 +357,6 @@ function Product({ cart, setCart }) {
         <CartBtn
           onClick={() => {
             handleCart();
-            createUsers();
           }}
         >
           장바구니 담기
