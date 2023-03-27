@@ -19,6 +19,13 @@ const TopWrap = styled.div`
   justify-content: space-between;
   padding: 0.5rem 2rem 0.5rem 2rem;
 `;
+const TopWrap1 = styled.div`
+  border-bottom: 0.5px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 2rem 0.5rem 2rem;
+`;
 const Left = styled.div`
   display: flex;
   align-items: center;
@@ -68,12 +75,12 @@ const UserImg = styled.img`
   margin-right: 2rem;
   cursor: pointer;
 `;
-const BtmWrap = styled.div``;
 const Wrap = styled.div`
-  position: sticky;
   top: 0;
   background-color: white;
   z-index: 9999;
+  position: sticky;
+  width: 100%;
 `;
 function Header() {
   const navigate = useNavigate();
@@ -103,8 +110,8 @@ function Header() {
     return () => unsubscribe();
   }, []);
   return (
-    <Wrap>
-      <TopWrap>
+    <>
+      <TopWrap1>
         <Left>
           <span>즐겨찾기</span>
         </Left>
@@ -112,26 +119,33 @@ function Header() {
           <span onClick={() => navigate("/Login")}>로그인</span>
           <span onClick={() => navigate("/SignUp")}>회원가입</span>
         </Right>
-      </TopWrap>
-      <TopWrap>
-        <Left>
-          <Logo src={CatLogo} alt="logo" onClick={() => navigate("/")} />
-          <Input type="text" placeholder="어떤 상품을 찾냐옹?" />
-          <span onClick={() => navigate("/Community")} style={{ marginLeft: "1rem" }}>
-            냥냥 게시판
-          </span>
-        </Left>
-        <Right>
-          <RightBar>
-            <UserImg src={User} alt="userPage" onClick={() => navigate("/Profile")} />
-          </RightBar>
-          <RightBar>
-            <img src={Cart} alt="cartPage" style={{ width: "2.5vw" }} onClick={() => navigate("ShoppingBasket")} />
-            {users.length >= 1 && <span>{users.length}</span>}
-          </RightBar>
-        </Right>
-      </TopWrap>
-    </Wrap>
+      </TopWrap1>
+      <Wrap>
+        <TopWrap>
+          <Left>
+            <Logo src={CatLogo} alt="logo" onClick={() => navigate("/")} />
+            <Input type="text" placeholder="어떤 상품을 찾냐옹?" />
+            <span onClick={() => navigate("/Community")} style={{ marginLeft: "1rem" }}>
+              냥냥 게시판
+            </span>
+          </Left>
+          <Right>
+            <RightBar>
+              <UserImg src={User} alt="userPage" onClick={() => navigate("/Profile")} />
+            </RightBar>
+            <RightBar>
+              <img
+                src={Cart}
+                alt="cartPage"
+                style={{ width: "2.5vw", marginRight: ".5rem" }}
+                onClick={() => navigate("ShoppingBasket")}
+              />
+              {users.length >= 1 && <span>{users.length}</span>}
+            </RightBar>
+          </Right>
+        </TopWrap>
+      </Wrap>
+    </>
   );
 }
 

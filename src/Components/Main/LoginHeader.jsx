@@ -76,6 +76,7 @@ const Wrap = styled.div`
   top: 0;
   background-color: white;
   z-index: 9999;
+  width: 100%;
 `;
 
 const LogoutBtn = styled.span`
@@ -143,7 +144,12 @@ function LoginHeader() {
             <UserImg src={User} alt="userPage" onClick={() => navigate("/Profile")} />
           </RightBar>
           <RightBar>
-            <img src={Cart} alt="cartPage" style={{ width: "2.5vw" }} onClick={() => navigate("ShoppingBasket")} />
+            <img
+              src={Cart}
+              alt="cartPage"
+              style={{ width: "2.5vw", marginRight: ".5rem" }}
+              onClick={() => navigate("ShoppingBasket")}
+            />
             {users.length >= 1 && <span>{users.length}</span>}
           </RightBar>
         </Right>

@@ -24,7 +24,8 @@ const Wrap = styled.div`
 const Writing = styled.span`
   cursor: pointer;
   position: absolute;
-  top: 10px;
+  color: #ffffff;
+  top: 16px;
   right: -100px;
   z-index: 100;
   display: inline;
