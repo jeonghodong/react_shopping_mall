@@ -8,7 +8,7 @@ import PostChangeModal from "./PostChangeModal";
 
 const Wrap = styled.div`
   width: 100vw;
-  height: 80vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 2rem 7rem 2rem 7rem;

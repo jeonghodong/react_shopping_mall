@@ -24,7 +24,7 @@ function Posts({ posts }) {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div style={{ height: "100vh" }}>
       {posts.map((v) => (
         <div key={v.id}>
           <Wrap>
@@ -43,7 +43,7 @@ function Posts({ posts }) {
           <Line>{""}</Line>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

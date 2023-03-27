@@ -123,6 +123,9 @@ function LoginHeader({ cart }) {
         <Left>
           <Logo src={CatLogo} alt="logo" onClick={() => navigate("/")} />
           <Input type="text" placeholder="어떤 상품을 찾냐옹?" />
+          <span onClick={() => navigate("/Community")} style={{ marginLeft: "1rem" }}>
+            냥냥 게시판
+          </span>
         </Left>
         <Right>
           <RightBar>
@@ -131,9 +134,6 @@ function LoginHeader({ cart }) {
           <RightBar>
             <img src={Cart} alt="cartPage" style={{ width: "2.5vw" }} onClick={() => navigate("ShoppingBasket")} />
             {users.length >= 1 && <span>{users.length}</span>}
-          </RightBar>
-          <RightBar>
-            <span onClick={() => navigate("/Community")}>커뮤니티 이동</span>
           </RightBar>
         </Right>
       </TopWrap>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import Footer from "../Components/Main/Footer";
 import Header from "../Components/Main/Header";
 import LoginHeader from "../Components/Main/LoginHeader";
 
@@ -15,6 +16,7 @@ function Home({ cart }) {
     <>
       {isLogin ? <LoginHeader cart={cart} /> : <Header cart={cart} />}
       <Outlet />
+      <Footer />
     </>
   );
 }

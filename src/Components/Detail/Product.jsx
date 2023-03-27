@@ -5,11 +5,11 @@ import styled from "styled-components";
 import cash from "../../assets/sack-dollar-solid.svg";
 import leaf from "../../assets/leaf-solid.svg";
 import truck from "../../assets/truck-solid.svg";
-import { addDoc, collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import db from "../../firebase";
 import { useSelector } from "react-redux";
 const Wrap = styled.div`
-  padding: 0rem 10rem 0rem 10rem;
+  padding: 2rem 10rem 0rem 10rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
