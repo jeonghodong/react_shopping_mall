@@ -82,6 +82,26 @@ const Wrap = styled.div`
   position: sticky;
   width: 100%;
 `;
+
+const Post = styled.span`
+  cursor: pointer;
+  font-weight: 500;
+  margin-left: 1rem;
+  font-size: 1vw !important;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  background-color: #8888ff;
+  color: white;
+`;
+
+const Line = styled.div`
+  background-color: #f0f0f0;
+  height: 40px;
+  width: 2px;
+  border-radius: 0.3px;
+  margin-left: 1rem;
+`;
+
 function Header() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -125,9 +145,8 @@ function Header() {
           <Left>
             <Logo src={CatLogo} alt="logo" onClick={() => navigate("/")} />
             <Input type="text" placeholder="어떤 상품을 찾냐옹?" />
-            <span onClick={() => navigate("/Community")} style={{ marginLeft: "1rem" }}>
-              냥냥 게시판
-            </span>
+            <Line />
+            <Post onClick={() => navigate("/Community")}>냥냥 게시판</Post>
           </Left>
           <Right>
             <RightBar>
