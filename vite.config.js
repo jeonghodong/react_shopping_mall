@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/<REPO>/',
+  base: '/react_shopping_mall/',
   build: { chunkSizeWarningLimit: 1600, }
 })
