@@ -12,6 +12,7 @@ const Wrap = styled.div`
   padding: 2rem 10rem 0rem 10rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 5rem;
 `;
 const LeftBox = styled.div``;
 const RightBox = styled.div`
@@ -100,9 +101,9 @@ const DeliveryText = styled.span`
 `;
 
 const Modal = styled.div`
+  position: fixed;
   width: 100vw;
   height: 100vh;
-  position: absolute;
   top: 0;
   left: 0;
   background-color: #00000076;
@@ -144,6 +145,7 @@ function Product({ cart, setCart }) {
   const [count, setCount] = useState(1);
   const [sucCart, setSucCart] = useState(false);
   const userId = useSelector((store) => store.loginState.userId);
+  const isLogin = useSelector((store) => store.loginState.isLogin);
 
   // 물건의 아이디값과 동일한 값을 가진 데이터만 가져옴
   useEffect(() => {
@@ -192,6 +194,11 @@ function Product({ cart, setCart }) {
 
   // 장바구니에 물건담기
   const handleCart = () => {
+    if (isLogin === false) {
+      alert("로그인을 해주세요.");
+      navigate("/Login");
+      return;
+    }
     // 장바구니에 담을 상품의 아이디가 동일한 상품의 index를 찾아냅니다 없으면 -1를 반환합니다.
     const itemIndex = cart.findIndex((item) => item.id === product.id);
     // 장바구니에 상품이 없다면 장바구니에 담습니다.

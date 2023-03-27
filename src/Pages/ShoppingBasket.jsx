@@ -11,7 +11,7 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  margin-bottom: 5rem;
 `;
 const NoneBox = styled.div`
   font-size: 5vw;

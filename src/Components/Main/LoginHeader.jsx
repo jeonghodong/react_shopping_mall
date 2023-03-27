@@ -39,6 +39,17 @@ const RightBar = styled.div`
   & img {
     cursor: pointer;
   }
+  & span {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    border: none;
+    padding: 0.3vw 0.5vw;
+    border-radius: 50%;
+    background-color: #7a7aff;
+    color: white;
+    font-weight: bold;
+  }
 `;
 
 const UserImg = styled.img`
@@ -71,7 +82,7 @@ const LogoutBtn = styled.span`
   margin-left: 1rem;
   cursor: pointer;
 `;
-function LoginHeader({ cart }) {
+function LoginHeader() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const name = useSelector((store) => store.loginState.name);

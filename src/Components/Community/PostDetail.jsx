@@ -39,7 +39,9 @@ const View = styled.span`
 `;
 const Right = styled.div``;
 const Left = styled.div``;
-const Text = styled.pre``;
+const Text = styled.pre`
+  min-height: 80%;
+`;
 
 const Footer = styled.div`
   display: flex;

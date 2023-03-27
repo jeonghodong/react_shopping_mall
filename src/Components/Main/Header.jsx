@@ -35,10 +35,20 @@ const Right = styled.div`
   }
 `;
 const RightBar = styled.div`
+  position: relative;
   & img {
-    width: 1.5vw;
-    margin-right: 2rem;
     cursor: pointer;
+  }
+  & span {
+    position: absolute;
+    top: 0;
+    left: 25px;
+    border: none;
+    padding: 0.3vw 0.5vw;
+    border-radius: 50%;
+    background-color: #7a7aff;
+    color: white;
+    font-weight: bold;
   }
 `;
 const Input = styled.input`
@@ -53,6 +63,11 @@ const Input = styled.input`
   margin-left: 2rem;
   font-weight: light;
 `;
+const UserImg = styled.img`
+  width: 2vw;
+  margin-right: 2rem;
+  cursor: pointer;
+`;
 const BtmWrap = styled.div``;
 const Wrap = styled.div`
   position: sticky;
@@ -60,7 +75,7 @@ const Wrap = styled.div`
   background-color: white;
   z-index: 9999;
 `;
-function Header({ cart }) {
+function Header() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db.db, "users");
@@ -102,17 +117,17 @@ function Header({ cart }) {
         <Left>
           <Logo src={CatLogo} alt="logo" onClick={() => navigate("/")} />
           <Input type="text" placeholder="어떤 상품을 찾냐옹?" />
+          <span onClick={() => navigate("/Community")} style={{ marginLeft: "1rem" }}>
+            냥냥 게시판
+          </span>
         </Left>
         <Right>
           <RightBar>
-            <img src={User} alt="userPage" onClick={() => navigate("/Profile")} />
+            <UserImg src={User} alt="userPage" onClick={() => navigate("/Profile")} />
           </RightBar>
           <RightBar>
-            <img src={Cart} alt="cartPage" style={{ width: "2vw" }} onClick={() => navigate("ShoppingBasket")} />
+            <img src={Cart} alt="cartPage" style={{ width: "2.5vw" }} onClick={() => navigate("ShoppingBasket")} />
             {users.length >= 1 && <span>{users.length}</span>}
-          </RightBar>
-          <RightBar>
-            <span onClick={() => navigate("/Community")}>커뮤니티 이동</span>
           </RightBar>
         </Right>
       </TopWrap>
