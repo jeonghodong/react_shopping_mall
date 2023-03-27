@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -20,12 +21,40 @@ const Line = styled.div`
   height: 1px;
   background-color: #eeeeee;
 `;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+  button {
+    margin: 0 0.5rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+`;
 function Posts({ posts }) {
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 15;
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div style={{ height: "100vh" }}>
-      {posts.map((v) => (
+      {currentPosts.map((v) => (
         <div key={v.id}>
           <Wrap>
             <span
@@ -43,6 +72,15 @@ function Posts({ posts }) {
           <Line>{""}</Line>
         </div>
       ))}
+      {totalPages > 1 && (
+        <ButtonContainer>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button key={index} onClick={() => handlePageClick(index + 1)} disabled={currentPage === index + 1}>
+              {index + 1}
+            </button>
+          ))}
+        </ButtonContainer>
+      )}
     </div>
   );
 }
