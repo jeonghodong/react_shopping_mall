@@ -107,6 +107,7 @@ function Header() {
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db.db, "users");
   const userId = useSelector((store) => store.loginState.userId);
+  const isLogin = useSelector((store) => store.loginState.isLogin);
 
   // 해당 uid를 가진 사람의 장바구니 데이터만 들고옵니다.
   useEffect(() => {
@@ -129,6 +130,15 @@ function Header() {
     // Clean up the listener when the component unmounts
     return () => unsubscribe();
   }, []);
+
+  const goProfile = () => {
+    if (isLogin === false) {
+      alert("로그인을 해주세요.");
+      navigate("/Login");
+    } else {
+      navigate("/Profile");
+    }
+  };
   return (
     <>
       <TopWrap1>
@@ -150,7 +160,7 @@ function Header() {
           </Left>
           <Right>
             <RightBar>
-              <UserImg src={User} alt="userPage" onClick={() => navigate("/Profile")} />
+              <UserImg src={User} alt="userPage" onClick={goProfile} />
             </RightBar>
             <RightBar>
               <img

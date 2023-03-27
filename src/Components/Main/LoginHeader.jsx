@@ -107,6 +107,7 @@ function LoginHeader() {
   const [users, setUsers] = useState([]);
   const usersCollectionRef = collection(db.db, "users");
   const userId = useSelector((store) => store.loginState.userId);
+  const isLogin = useSelector((store) => store.loginState.isLogin);
 
   // 해당 uid를 가진 사람의 장바구니 데이터만 들고옵니다.
   useEffect(() => {
@@ -116,20 +117,24 @@ function LoginHeader() {
       const newData = filteredData.map((doc) => ({ ...doc.data(), id: doc.id }));
       setUsers(newData);
     };
-
     getUsers();
-
-    // Create a listener to update users in real-time when the database changes
     const unsubscribe = onSnapshot(usersCollectionRef, (snapshot) => {
       const updatedData = snapshot.docs.filter((doc) => doc.data().userId === userId);
       const newData = updatedData.map((doc) => ({ ...doc.data(), id: doc.id }));
       setUsers(newData);
     });
-
-    // Clean up the listener when the component unmounts
     return () => unsubscribe();
   }, []);
 
+  // 프로필 페이지 이동 미로그인 시 이동 x
+  const goProfile = () => {
+    if (isLogin === false) {
+      alert("로그인을 해주세요.");
+      navigate("/Login");
+    } else if (isLogin === true) {
+      navigate("/Profile");
+    }
+  };
   return (
     <Wrap>
       <TopWrap>
@@ -159,7 +164,7 @@ function LoginHeader() {
         </Left>
         <Right>
           <RightBar>
-            <UserImg src={User} alt="userPage" onClick={() => navigate("/Profile")} />
+            <UserImg src={User} alt="userPage" onClick={goProfile} />
           </RightBar>
           <RightBar>
             <img
