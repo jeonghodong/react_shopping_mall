@@ -45,6 +45,7 @@ const Btn = styled.button`
   width: 30vw;
   text-align: center;
   cursor: pointer;
+  color: white;
 `;
 const TopBox = styled.div`
   display: flex;
