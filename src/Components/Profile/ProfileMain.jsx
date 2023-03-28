@@ -170,7 +170,7 @@ function ProfileMain() {
       .then((res) => {
         const updatedUser = { email: modEmail };
         dispatch(login(updatedUser));
-        alert("이름 변경 완료");
+        alert("메일 변경 완료");
       })
       .catch((err) => {
         console.log(err);
