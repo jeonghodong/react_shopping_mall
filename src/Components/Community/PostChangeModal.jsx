@@ -96,6 +96,7 @@ function PostChangeModal({ detail, setCModal, setDetail, setUpdateCount }) {
       document.removeEventListener("keydown", handleEscPress);
     };
   }, []);
+
   return (
     <div>
       <Wrap>
