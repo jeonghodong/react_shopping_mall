@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -19,7 +19,6 @@ const Wrap = styled.div`
     border: 1px solid #c0c0c0;
     height: 40px;
     padding: 0.5rem;
-    margin-right: 2rem;
   }
   & h2 {
     font-size: 1.8vw;
@@ -28,6 +27,15 @@ const Wrap = styled.div`
     font-size: 1.5vw;
     margin-bottom: 2rem;
   }
+`;
+const PwdInput = styled.input`
+  width: 20vw !important;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid #c0c0c0;
+  height: 40px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
 `;
 const InBox = styled.div`
   position: relative;
@@ -95,8 +103,8 @@ const Alert = styled.span`
   color: red;
   position: absolute;
   font-size: 0.8vw !important;
-  top: 50px;
-  right: -14px;
+  top: 75px;
+  left: 0;
 `;
 
 const PwdMdoal = styled.div`
@@ -122,6 +130,7 @@ const OutBox = styled.div`
   justify-content: center;
   padding: 5rem;
   flex-direction: column;
+  align-items: center;
 `;
 
 const CofirmPwd = styled.button`
@@ -132,6 +141,7 @@ const CofirmPwd = styled.button`
   font-size: 1.2vw;
   background-color: blue;
   color: white;
+  width: 20vw;
   &:disabled {
     background-color: #a8a8a8;
   }
@@ -206,12 +216,20 @@ function ProfileMain() {
     // 파이어베이스 비밀번호 변경
     updatePassword(user, confirmPwd)
       .then(() => {
-        alert("비밀번호를 변경하였습니다.");
+        alert("비밀번호를 변경하였습니다. 다시 로그인 해주세요.");
+        dispatch(reset());
+        navigate("/login");
       })
       .then(() => {
         setPwdModal(false);
       })
       .catch((err) => {
+        if (err.code === "auth/requires-recent-login") {
+          alert("재로그인 후 다시 시도해주세요.");
+          dispatch(reset());
+          navigate("/");
+          console.log(err.code);
+        }
         console.error(err);
       });
   };
@@ -245,6 +263,19 @@ function ProfileMain() {
     }
   };
 
+  //ESC 클릭시 document자체를 잡아준 다음 handleEscPress 실행
+  useEffect(() => {
+    const handleEscPress = (e) => {
+      if (e.keyCode === 27) {
+        setPwdModal(false);
+      }
+    };
+    document.addEventListener("keydown", handleEscPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscPress);
+    };
+  }, []);
   return (
     <Wrap>
       <Line />
@@ -292,17 +323,17 @@ function ProfileMain() {
       </div>
       <div style={{ marginTop: "2rem" }}>{modModal || <Exit>회원탈퇴</Exit>}</div>
       {pwdModal && (
-        <PwdMdoal>
-          <OutBox>
+        <PwdMdoal onClick={() => setPwdModal(false)}>
+          <OutBox onClick={(e) => e.stopPropagation()}>
             <InBox>
               <h2>새 비밀번호</h2>
               {pwdAlert && <Alert>비밀번호를 6글자 이상 입력해주세요.</Alert>}
-              <input type="password" value={pwd} onChange={handlePwd} />
+              <PwdInput type="password" value={pwd} onChange={handlePwd} />
             </InBox>
             <InBox>
               <h2>새 비밀번호 확인</h2>
               {pwdAlert1 && <Alert>새 비밀번호가 일치하지 않습니다.</Alert>}
-              <input type="password" value={confirmPwd} onChange={handleConfirmPwd} />
+              <PwdInput type="password" value={confirmPwd} onChange={handleConfirmPwd} />
             </InBox>
             <CofirmPwd onClick={handleChangePwd} disabled={disabled}>
               비밀번호 변경
