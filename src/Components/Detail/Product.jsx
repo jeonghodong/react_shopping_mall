@@ -162,6 +162,9 @@ function Product({ cart, setCart }) {
   const usersCollectionRef = collection(db.db, "users");
 
   const createUsers = async () => {
+    if (isLogin === false) {
+      return;
+    }
     const querySnapshot = await getDocs(usersCollectionRef);
     const existingProduct = querySnapshot.docs.find((doc) => {
       const data = doc.data();
@@ -226,7 +229,6 @@ function Product({ cart, setCart }) {
       });
       setCart(updatedCart);
       setSucCart(true);
-      createUsers();
     }
   };
   // 총 가격
@@ -356,6 +358,7 @@ function Product({ cart, setCart }) {
         </OrderBox>
         <CartBtn
           onClick={() => {
+            createUsers();
             handleCart();
           }}
         >
