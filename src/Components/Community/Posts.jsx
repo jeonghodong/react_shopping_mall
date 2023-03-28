@@ -53,7 +53,7 @@ function Posts({ posts }) {
   };
 
   return (
-    <div style={{ height: "100vh" }}>
+    <>
       {currentPosts.map((v) => (
         <div key={v.id}>
           <Wrap>
@@ -81,7 +81,7 @@ function Posts({ posts }) {
           ))}
         </ButtonContainer>
       )}
-    </div>
+    </>
   );
 }
 

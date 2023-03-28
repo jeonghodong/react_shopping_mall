@@ -52,6 +52,7 @@ const Name = styled.input`
   margin-bottom: 2rem;
   width: 13vw;
   text-align: center;
+  margin-right: 1rem;
 `;
 const Line = styled.div`
   width: 30vw;
