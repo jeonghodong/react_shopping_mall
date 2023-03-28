@@ -56,15 +56,17 @@ function PostModal({ setModal, setPosts, posts }) {
 
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+
   let today = new Date();
   let year = today.getFullYear(); // 년도
   let month = today.getMonth() + 1; // 월
   let date = today.getDate(); // 날짜
   let hours = today.getHours(); // 시
   let minutes = today.getMinutes(); // 분
+
   const data = {
     userId: userId,
-    bid: posts.length,
+    bid: posts[0].bid + 1,
     title: title,
     name: name,
     text: text,
@@ -85,7 +87,6 @@ function PostModal({ setModal, setPosts, posts }) {
   const handleText = (e) => {
     setText(e.target.value);
   };
-
   // 데이터보내기
   const handleData = (e) => {
     e.preventDefault();
