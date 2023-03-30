@@ -25,7 +25,6 @@ const Wrap = styled.div`
   }
   & span {
     font-size: 1.5vw;
-    margin-bottom: 2rem;
   }
 `;
 const PwdInput = styled.input`
@@ -40,7 +39,6 @@ const PwdInput = styled.input`
 const InBox = styled.div`
   position: relative;
   margin-bottom: 2rem;
-  justify-content: space-between;
   & h2 {
     font-size: 1.5vw;
     font-weight: bold;
@@ -103,9 +101,14 @@ const InWrap = styled.div`
 const Alert = styled.span`
   color: red;
   position: absolute;
-  font-size: 0.8vw !important;
-  top: 75px;
-  left: 0;
+  font-size: 0.7vw !important;
+  top: 3px;
+`;
+const Alert1 = styled.span`
+  color: red;
+  position: absolute;
+  font-size: 0.7vw !important;
+  top: 3px;
 `;
 
 const PwdMdoal = styled.div`
@@ -124,14 +127,12 @@ const PwdMdoal = styled.div`
 
 const OutBox = styled.div`
   background-color: white;
-  width: 40vw;
   height: 40vh;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   padding: 5rem;
   flex-direction: column;
-  align-items: center;
 `;
 
 const CofirmPwd = styled.button`
@@ -327,14 +328,24 @@ function ProfileMain() {
         <PwdMdoal onClick={() => setPwdModal(false)}>
           <OutBox onClick={(e) => e.stopPropagation()}>
             <InBox>
-              <h2>새 비밀번호</h2>
-              {pwdAlert && <Alert>비밀번호를 6글자 이상 입력해주세요.</Alert>}
+              <div>
+                <h2>새 비밀번호</h2>
+              </div>
               <PwdInput type="password" value={pwd} onChange={handlePwd} />
+              {pwdAlert && (
+                <div style={{ position: "relative" }}>
+                  <Alert>비밀번호를 6글자 이상 입력해주세요.</Alert>
+                </div>
+              )}
             </InBox>
             <InBox>
               <h2>새 비밀번호 확인</h2>
-              {pwdAlert1 && <Alert>새 비밀번호가 일치하지 않습니다.</Alert>}
               <PwdInput type="password" value={confirmPwd} onChange={handleConfirmPwd} />
+              {pwdAlert1 && (
+                <div style={{ position: "relative" }}>
+                  <Alert1>새 비밀번호가 일치하지 않습니다.</Alert1>
+                </div>
+              )}
             </InBox>
             <CofirmPwd onClick={handleChangePwd} disabled={disabled}>
               비밀번호 변경

@@ -63,20 +63,26 @@ const Text = styled.span`
 const AlertRed = styled.span`
   position: absolute;
   color: red;
-  font-size: 0.9rem;
-  bottom: 7.5rem;
+  font-size: 0.7vw;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 const AlertRed1 = styled.span`
   position: absolute;
   color: red;
-  font-size: 0.9rem;
-  bottom: 14.5rem;
+  font-size: 0.7vw;
+  bottom: 0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 const AlertBlue = styled.span`
   position: absolute;
   color: blue;
-  font-size: 0.9rem;
-  bottom: 7rem;
+  font-size: 0.7vw;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 function SignUp() {
   const navigate = useNavigate();
@@ -152,17 +158,25 @@ function SignUp() {
           <Input type="name" placeholder="이름" style={{ marginTop: "5rem" }} value={name} onChange={handleName} />
           <Input type="email" placeholder="아이디(이메일)" value={email} onChange={handleEmail} />
           <Input type="password" placeholder="비밀번호" value={password} onChange={handlePassword} />
-          {passwordTooShort && <AlertRed1>비밀번호가 너무 짧습니다. (6자 이상 입력해주세요.)</AlertRed1>}
+          {passwordTooShort && (
+            <div style={{ position: "relative", width: "50vw" }}>
+              <AlertRed1>비밀번호가 너무 짧습니다. (6자 이상 입력해주세요.)</AlertRed1>
+            </div>
+          )}
           <Input type="password" placeholder="비밀번호 확인" value={confirmPassword} onChange={handleConfirmPassword} />
+          {confirmPassword &&
+            (confirm ? (
+              <div style={{ position: "relative", width: "50vw" }}>
+                <AlertBlue>비밀번호가 일치합니다.</AlertBlue>
+              </div>
+            ) : (
+              <div style={{ position: "relative", width: "50vw" }}>
+                <AlertRed>비밀번호가 일치하지 않습니다.</AlertRed>
+              </div>
+            ))}
           <Btn ref={SignUpBtn} disabled>
             회원가입 완료
           </Btn>
-          {confirmPassword &&
-            (confirm ? (
-              <AlertBlue>비밀번호가 일치합니다.</AlertBlue>
-            ) : (
-              <AlertRed>비밀번호가 일치하지 않습니다.</AlertRed>
-            ))}
         </InputBox>
       </InBox>
     </Wrap>
