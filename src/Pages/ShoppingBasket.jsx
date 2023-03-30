@@ -42,7 +42,6 @@ function ShoppingBasket({ cart, setCart }) {
 
     getUsers();
   }, []);
-  console.log(users);
 
   return (
     <Wrap>

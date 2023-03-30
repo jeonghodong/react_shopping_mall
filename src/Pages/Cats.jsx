@@ -25,6 +25,7 @@ const Header = styled.div`
     cursor: pointer;
   }
 `;
+
 function Cats({ products, setProducts }) {
   // 상품정보 axios get
   useEffect(() => {
@@ -52,6 +53,7 @@ function Cats({ products, setProducts }) {
       setProducts(newProducts);
     }
   };
+
   return (
     <div>
       <Slide />

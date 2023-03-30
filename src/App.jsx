@@ -35,8 +35,6 @@ function App() {
     getUsers();
   }, [posts.length, updateCount]);
 
-  console.log(posts);
-
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

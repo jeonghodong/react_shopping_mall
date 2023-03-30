@@ -11,7 +11,7 @@ function Home({ cart }) {
   const name = useSelector((store) => store.loginState.name);
   const email = useSelector((store) => store.loginState.email);
   const isLogin = useSelector((store) => store.loginState.isLogin);
-  console.log(userId, name, email, isLogin);
+  // console.log(userId, name, email, isLogin);
   return (
     <>
       {isLogin ? <LoginHeader cart={cart} /> : <Header cart={cart} />}

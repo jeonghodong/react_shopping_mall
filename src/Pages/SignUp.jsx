@@ -86,10 +86,10 @@ const AlertBlue = styled.span`
 `;
 function SignUp() {
   const navigate = useNavigate();
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [confirm, setConfirm] = useState();
   const [passwordTooShort, setPasswordTooShort] = useState(false);
   const SignUpBtn = useRef();

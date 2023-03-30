@@ -57,29 +57,11 @@ const Text = styled.span`
   font-size: 2vw;
   font-weight: bold;
 `;
-const AlertRed = styled.span`
-  position: absolute;
-  color: red;
-  font-size: 0.9rem;
-  bottom: 7.5rem;
-`;
-const AlertRed1 = styled.span`
-  position: absolute;
-  color: red;
-  font-size: 0.9rem;
-  bottom: 15rem;
-`;
-const AlertBlue = styled.span`
-  position: absolute;
-  color: blue;
-  font-size: 0.9rem;
-  bottom: 7rem;
-`;
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -106,11 +88,9 @@ function Login() {
               navigate("/");
               setEmail("");
               setPassword("");
-              console.log(res);
             }
           })
           .catch((err) => {
-            console.log(err.code);
             if (err.code === "auth/user-not-found") {
               alert("존재하지 않는 이메일입니다.");
             }

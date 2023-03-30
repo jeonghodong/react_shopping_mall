@@ -53,18 +53,15 @@ const Footer = styled.div`
   }
 `;
 function PostDetail({ posts, setPosts, setUpdateCount }) {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [cModal, setCModal] = useState(false);
   const [detail, setDetail] = useState({});
   const userId = useSelector((store) => store.loginState.userId);
 
-  const navigate = useNavigate();
-  const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     setDetail(posts.find((v) => v.bid === Number(id)));
   }, []);
-
-  console.log(detail);
 
   const deletePost = () => {
     const postsDoc = doc(db.db, "posts", String(detail.id));
