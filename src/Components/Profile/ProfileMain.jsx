@@ -144,6 +144,7 @@ const CofirmPwd = styled.button`
   background-color: blue;
   color: white;
   width: 20vw;
+  transition: 1s;
   &:disabled {
     background-color: #a8a8a8;
   }
